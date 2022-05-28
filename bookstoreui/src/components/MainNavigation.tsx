@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { RoutePaths } from '../utils/enum';
 import PrivateRoute from './PrivateRoute';
+import { AuthWrapper } from '../context/auth';
 
 //component lazy loading
 const Login = lazy(() => import('../pages/login/index'));
@@ -19,9 +20,8 @@ const Register = lazy(() => import('../pages/register/index'));
 const MainNavigation: React.FC = () => {
 	return (
 		<Routes>
-			<Route path='/' element={<Navigate to={RoutePaths.Login} />} />
-			<Route path={RoutePaths.Login} element={<Login />} />
 			<Route path={RoutePaths.Register} element={<Register />} />
+			<Route path={RoutePaths.Login} element={<Login />} />
 			{/* <PrivateRoute path={RoutePaths.User} element={<User />} />
 			<PrivateRoute path={RoutePaths.EditUser} element={<EditUser />} />
 			<PrivateRoute path={RoutePaths.Category} element={<Category />} />

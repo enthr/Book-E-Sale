@@ -46,7 +46,9 @@ export const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({
 			) as UserModel) || new UserModel();
 		// if the item doesn't exist, return null
 		if (!itemStr.id) {
-			navigate(RoutePaths.Login, { replace: true });
+			pathname === '/register'
+				? navigate(RoutePaths.Register)
+				: navigate(RoutePaths.Login, { replace: true });
 		}
 		_setUser(itemStr);
 	}, [navigate]);
@@ -65,6 +67,7 @@ export const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({
 		if (!user.id) {
 			return;
 		}
+
 		const access: boolean = Shared.hasAccess(pathname, user);
 		if (!access) {
 			toast.warning('Sorry, you are not authorized to access this page');

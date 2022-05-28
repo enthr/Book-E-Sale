@@ -349,7 +349,7 @@ body.open-menu {
 
 #root {
 	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
-	max-width: 100%;
+	max-width: 1600px;
 	margin: 0 auto;
 	padding: 0;
 	width: 100%;

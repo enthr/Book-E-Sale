@@ -13,7 +13,7 @@ const materialCommonStyles = {
 				right: '14px',
 				top: '50%',
 				transform: 'translateY(-50%)',
-				content: " '' ",
+				content: '""',
 				width: '15px',
 				height: '15px',
 				backgroundImage: 'url(' + FlagSharpIcon + ')',
