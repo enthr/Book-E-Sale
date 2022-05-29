@@ -1,8 +1,7 @@
 import React, { lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RoutePaths } from '../utils/enum';
 import PrivateRoute from './PrivateRoute';
-import { AuthWrapper } from '../context/auth';
 
 //component lazy loading
 const Login = lazy(() => import('../pages/login/index'));

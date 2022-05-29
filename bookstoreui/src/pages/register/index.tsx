@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { createAccountStyle } from './style';
 import {
 	Breadcrumbs,
@@ -27,13 +27,10 @@ import BaseList from '../../models/BaseList';
 import userService from '../../service/user.service';
 
 const Register: React.FC = () => {
+	const isMounted = useRef(false);
 	const navigate = useNavigate();
 	const initialValues: CreateUserModel = new CreateUserModel();
 	const [roleList, setRoleList] = useState<RoleModel[]>([]);
-
-	useEffect(() => {
-		getRoles();
-	}, []);
 
 	const getRoles = (): void => {
 		userService.getAllRoles().then((res: BaseList<RoleModel[]>) => {
@@ -46,6 +43,12 @@ const Register: React.FC = () => {
 			}
 		});
 	};
+
+	useEffect(() => {
+		if (isMounted.current) return;
+		getRoles();
+		isMounted.current = true;
+	}, []);
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()

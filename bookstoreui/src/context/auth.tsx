@@ -1,5 +1,10 @@
-import React from 'react';
-import { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+	useRef
+} from 'react';
 import Shared from '../utils/shared';
 import { RoutePaths } from '../utils/enum';
 import UserModel from '../models/UserModel';
@@ -25,6 +30,7 @@ export const AuthContext = createContext(initialState);
 export const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({
 	children
 }: React.PropsWithChildren<{}>) => {
+	const isMounted = useRef(false);
 	const [appInitialize, setAppInitialize] = useState<boolean>(false);
 	const [user, _setUser] = useState<UserModel>(new UserModel());
 
@@ -40,18 +46,20 @@ export const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({
 	};
 
 	useEffect(() => {
+		if (isMounted.current) return;
+
 		const itemStr: UserModel =
 			(JSON.parse(
 				localStorage.getItem(Shared.LocalStorageKeys.USER) as string
 			) as UserModel) || new UserModel();
 		// if the item doesn't exist, return null
 		if (!itemStr.id) {
-			pathname === '/register'
-				? navigate(RoutePaths.Register)
-				: navigate(RoutePaths.Login, { replace: true });
+			navigate(RoutePaths.Login);
 		}
 		_setUser(itemStr);
-	}, [navigate]);
+
+		isMounted.current = true;
+	}, []);
 
 	const signOut = (): void => {
 		setUser(new UserModel());
