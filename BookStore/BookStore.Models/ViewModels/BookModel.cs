@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BookStore.Models.Data;
 
-#nullable disable
-
 namespace BookStore.Models.ViewModels
 {
     public class BookModel
@@ -27,6 +25,7 @@ namespace BookStore.Models.ViewModels
             this.PublisherId = book.PublisherId;
             this.Quantity = book.Quantity;
         }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }

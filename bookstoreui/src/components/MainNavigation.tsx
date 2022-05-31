@@ -6,8 +6,8 @@ import PrivateRoute from './PrivateRoute';
 //component lazy loading
 const Login = lazy(() => import('../pages/login/index'));
 const Register = lazy(() => import('../pages/register/index'));
-// const User = lazy(() => import('../pages/user/index'));
-// const EditUser = lazy(() => import('../pages/user/editUser/index'));
+const User = lazy(() => import('../pages/user/index'));
+const EditUser = lazy(() => import('../pages/user/editUser/index'));
 // const Category = lazy(() => import('../pages/category/index'));
 // const EditCategory = lazy(() => import('../pages/category/editCategory/index'));
 // const Book = lazy(() => import('../pages/book/index'));
@@ -21,25 +21,36 @@ const MainNavigation: React.FC = () => {
 		<Routes>
 			<Route path={RoutePaths.Register} element={<Register />} />
 			<Route path={RoutePaths.Login} element={<Login />} />
-			{/* <PrivateRoute path={RoutePaths.User} element={<User />} />
-			<PrivateRoute path={RoutePaths.EditUser} element={<EditUser />} />
-			<PrivateRoute path={RoutePaths.Category} element={<Category />} />
-			<PrivateRoute
-				path={RoutePaths.EditCategory}
-				element={<EditCategory />}
-			/>
-			<PrivateRoute
-				path={RoutePaths.AddCategory}
-				element={<EditCategory />}
-			/>
-			<PrivateRoute path={RoutePaths.Book} element={<Book />} />
-			<PrivateRoute path={RoutePaths.EditBook} element={<EditBook />} />
-			<PrivateRoute path={RoutePaths.AddBook} element={<EditBook />} />
-			<PrivateRoute path={RoutePaths.Cart} element={<Cart />} />
-			<PrivateRoute
-				path={RoutePaths.UpdateProfile}
-				element={<UpdateProfile />}
-			/> */}
+			<Route element={<PrivateRoute />}>
+				<Route path={RoutePaths.User} element={<User />} />
+				<Route path={RoutePaths.EditUser} element={<EditUser />} />
+				{/* <PrivateRoute
+					path={RoutePaths.Category}
+					element={<Category />}
+				/>
+				<PrivateRoute
+					path={RoutePaths.EditCategory}
+					element={<EditCategory />}
+				/>
+				<PrivateRoute
+					path={RoutePaths.AddCategory}
+					element={<EditCategory />}
+				/>
+				<PrivateRoute path={RoutePaths.Book} element={<Book />} />
+				<PrivateRoute
+					path={RoutePaths.EditBook}
+					element={<EditBook />}
+				/>
+				<PrivateRoute
+					path={RoutePaths.AddBook}
+					element={<EditBook />}
+				/>
+				<PrivateRoute path={RoutePaths.Cart} element={<Cart />} />
+				<PrivateRoute
+					path={RoutePaths.UpdateProfile}
+					element={<UpdateProfile />}
+				/> */}
+			</Route>
 		</Routes>
 	);
 };

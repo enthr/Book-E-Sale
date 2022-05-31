@@ -18,11 +18,10 @@ namespace BookStore.Repository
             optionsBuilder.UseLazyLoadingProxies();
             if (!optionsBuilder.IsConfigured)
             {
-                var builder1 = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("environmentSetting.json");
+                var builder1 = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("environmentSettings.json");
                 string environment = builder1.Build().GetSection("ENVIRONMENT").GetSection("Key").Value;
                 string connectionString = string.Empty;
-                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true)
-                                .AddJsonFile($"appsettings.{environment}.json", optional: false);
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true).AddJsonFile($"appsettings.{environment}.json", optional: false);
                 connectionString = builder.Build().GetSection("BookStorePostgreSqlConnectionString").GetSection("BookStoreApplicationDB").Value;
 
                 if (!string.IsNullOrEmpty(connectionString))

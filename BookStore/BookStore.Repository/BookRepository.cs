@@ -24,7 +24,7 @@ namespace BookStore.Repository
                     query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
                 }
 
-                GetBookModel getBookModel = null;
+                GetBookModel getBookModel = null!;
                 foreach (Book book in query.ToList())
                 {
                     getBookModel = new GetBookModel();

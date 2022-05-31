@@ -18,13 +18,6 @@ namespace BookStore.Controllers
             _configuration = configuration;
         }
 
-        #region Register
-
-        /// <summary>
-        /// Registers user to database.
-        /// </summary>
-        /// <param name="user">user</param>
-        /// <returns>RegisterUserResponse</returns>
         [HttpPost("RegisterUser")]
         public IActionResult RegisterUser([FromBody] RegisterUserRequest user)
         {
@@ -45,15 +38,6 @@ namespace BookStore.Controllers
 
         }
 
-        #endregion
-
-        #region Login
-
-        /// <summary>
-        /// Validates login credentials
-        /// </summary>
-        /// <param name="loginRequest">loginRequest</param>
-        /// <returns>LoginResponse</returns>
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
@@ -71,7 +55,5 @@ namespace BookStore.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, resultState);
             }
         }
-
-        #endregion
     }
 }

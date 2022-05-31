@@ -61,7 +61,6 @@ namespace BookStore.Repository
             }
         }
 
-        #region UserMaster
         public User GetUserById(int id)
         {
             using (UnitOfWork db = new UnitOfWork())
@@ -133,22 +132,22 @@ namespace BookStore.Repository
             }
         }
 
-        public BaseList<GetUserModel> GetAllUsers(int pageIndex, int pageSize, string keyword)
+        public BaseList<GetUserModel> GetAllUsers(int pageIndex, int pageSize)
         {
             using (UnitOfWork db = new UnitOfWork())
             {
                 var query = db.Users.AsQueryable();
                 BaseList<GetUserModel> result = new BaseList<GetUserModel>();
                 List<GetUserModel> getUsers = new List<GetUserModel>();
-                GetUserModel getUser = null;
-                Role role = null;
+                GetUserModel getUser;
+                Role role;
                 result.TotalRecords = query.Count();
                 if (pageSize != 0)
                 {
-                    keyword = keyword != null ? keyword : string.Empty;
+                    //keyword = keyword != null ? keyword : string.Empty;
                     //Fetch all the records where keyword is part of Firstname or Lastname or Email. Then skip first {{pageIndex * pageSize}} records and take next {{pageSize}} records.
-                    query = query.Where(x => x.Firstname.ToLower().Contains(keyword.ToLower()) || x.Lastname.Contains(keyword) || x.Email.Contains(keyword)).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
+                    //query = query.Where(x => x.Firstname.ToLower().Contains(keyword.ToLower()) || x.Lastname.Contains(keyword) || x.Email.Contains(keyword)).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
                 }
 
                 foreach (User user in query.ToList())
@@ -183,6 +182,5 @@ namespace BookStore.Repository
                 return result;
             }
         }
-        #endregion
     }
 }

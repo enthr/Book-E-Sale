@@ -11,7 +11,7 @@ namespace BookStore.Models.ViewModels
     {
         public RoleModel()
         {
-
+            this.Name = String.Empty;
         }
 
         public RoleModel(Role role)

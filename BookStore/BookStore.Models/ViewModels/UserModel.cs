@@ -12,7 +12,10 @@ namespace BookStore.Models.ViewModels
 
         public UserModel()
         {
-
+            this.Email = String.Empty; 
+            this.FirstName = String.Empty; 
+            this.LastName = String.Empty;
+            this.Password = String.Empty;
         }
 
         public UserModel(User user)
