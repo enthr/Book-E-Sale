@@ -17,6 +17,7 @@ namespace BookStore.Models.Data
 
         public BookStoreContext(DbContextOptions<BookStoreContext> options): base(options)
         {
+
         }
 
         public virtual DbSet<Book> Books { get; set; }

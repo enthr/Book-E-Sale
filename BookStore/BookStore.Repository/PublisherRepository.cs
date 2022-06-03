@@ -10,17 +10,23 @@ namespace BookStore.Repository
 {
     public class PublisherRepository
     {
-        public BaseList<Publisher> GetAll(int pageIndex, int pageSize, string keyword)
+        public BaseList<Publisher> GetAll(int pageIndex, int pageSize)
         {
             using (UnitOfWork db = new UnitOfWork())
             {
                 var query = db.Publishers.AsQueryable();
                 BaseList<Publisher> result = new BaseList<Publisher>();
+                result.TotalRecords = query.Count();
                 if (pageSize != 0)
                 {
-                    query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-                    if (keyword != default)
+                    if(pageIndex != 0)
                     {
+                        //query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                        //if (keyword != default)
+                        //{
+                        //    result.TotalRecords = query.Count();
+                        //}
+                        query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
                         result.TotalRecords = query.Count();
                     }
                 }

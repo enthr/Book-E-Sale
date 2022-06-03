@@ -30,8 +30,6 @@ class BookService {
 	}
 
 	public async save(data: BookModel): Promise<any> {
-		data.publisherId = 2;
-		data.quantity = 10;
 		if (data.id) {
 			const url = `${this.ENDPOINT}/Update`;
 			return request.put<BookModel>(url, data).then((res) => {

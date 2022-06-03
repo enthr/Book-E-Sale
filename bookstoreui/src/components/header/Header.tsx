@@ -125,7 +125,10 @@ const Header: React.FC = () => {
 									<List className='cart-country-wrap'>
 										<ListItem className='cart-link'>
 											<Link to='/cart' title='Cart'>
-												<img src={cartIcon} alt='Cart' />
+												<img
+													src={cartIcon}
+													alt='Cart'
+												/>
 												<span>
 													{
 														cartContext.cartData

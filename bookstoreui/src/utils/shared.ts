@@ -27,6 +27,11 @@ export default class Shared {
 			access: [Role.Admin]
 		},
 		{
+			name: 'Publishers',
+			route: RoutePaths.Publisher,
+			access: [Role.Admin]
+		},
+		{
 			name: 'Books',
 			route: RoutePaths.Book,
 			access: [Role.Admin, Role.Seller]

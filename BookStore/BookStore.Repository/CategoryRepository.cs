@@ -10,7 +10,7 @@ namespace BookStore.Repository
 {
     public class CategoryRepository
     {
-        public BaseList<Category> GetAll(int pageIndex, int pageSize, string keyword)
+        public BaseList<Category> GetAll(int pageIndex, int pageSize)
         {
             using (UnitOfWork db = new UnitOfWork())
             {
@@ -21,11 +21,13 @@ namespace BookStore.Repository
                 {
                     if (pageIndex != 0)
                     {
-                        query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-                        if (keyword != default)
-                        {
-                            result.TotalRecords = query.Count();
-                        }
+                        //query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                        //if (keyword != default)
+                        //{
+                        //    result.TotalRecords = query.Count();
+                        //}
+                        query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                        result.TotalRecords = query.Count();
                     }
                 }
 

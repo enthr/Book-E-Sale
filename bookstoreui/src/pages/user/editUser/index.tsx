@@ -22,7 +22,6 @@ import UserModel, { AddOrEditUserModel } from '../../../models/UserModel';
 import BaseList from '../../../models/BaseList';
 import { AuthContextModel, useAuthContext } from '../../../context/auth';
 import Shared from '../../../utils/shared';
-import { number } from 'yup/lib/locale';
 
 const EditUser: React.FC = () => {
 	const isMounted = useRef(false);
@@ -95,8 +94,8 @@ const EditUser: React.FC = () => {
 			setInitialValueState({
 				id: user.id,
 				email: user.email,
-				lastName: user.lastName,
-				firstName: user.firstName,
+				lastName: user.lastname,
+				firstName: user.firstname,
 				roleId,
 				password: user.password
 			});
