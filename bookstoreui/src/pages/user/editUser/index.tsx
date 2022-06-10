@@ -83,7 +83,6 @@ const EditUser: React.FC = () => {
 	useEffect(() => {
 		if (id) {
 			getUserById();
-			console.log(id, initialValueState);
 		}
 	}, [id]);
 

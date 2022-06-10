@@ -48,7 +48,7 @@ const BookList: React.FC = () => {
 
 	useEffect(() => {
 		const timer: NodeJS.Timeout = setTimeout(() => {
-			if (filters.keyword === '') delete filters.keyword;
+			// if (filters.keyword === '') delete filters.keyword;
 			searchAllBooks({ ...filters });
 		}, 500);
 		return () => clearTimeout(timer);

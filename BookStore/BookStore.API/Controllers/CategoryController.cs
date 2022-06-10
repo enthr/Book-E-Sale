@@ -18,10 +18,10 @@ namespace BookStore.API.Controllers
     {
         [HttpGet]
         [Route("list")]
-        public BaseList<CategoryModel> GetCategories(int pageIndex = 1, int pageSize = 10)
+        public BaseList<CategoryModel> GetCategories(int pageIndex = 1, int pageSize = 10, string? keyword = null)
         {
             CategoryRepository repo = new CategoryRepository();
-            BaseList<Category> categories = repo.GetAll(pageIndex, pageSize);
+            BaseList<Category> categories = repo.GetAll(pageIndex, pageSize, keyword);
             return new BaseList<CategoryModel> { TotalRecords = categories.TotalRecords, Records = categories.Records.Select(record => new CategoryModel(record)).ToList() };
         }
 

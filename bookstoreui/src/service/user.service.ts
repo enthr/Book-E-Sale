@@ -10,6 +10,7 @@ class AuthService {
 	public async getAllUsers(
 		params: FilterModel
 	): Promise<BaseList<UserModel[]>> {
+		params.keyword = params.keyword ? params.keyword : null;
 		const url = `${this.ENDPOINT}/list`;
 		return request
 			.get<BaseList<UserModel[]>>(url, { params })

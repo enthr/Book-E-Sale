@@ -11,7 +11,7 @@ namespace BookStore.Repository
 {
     public class BookRepository
     {
-        public BaseList<GetBookModel> GetAll(int pageIndex, int pageSize)
+        public BaseList<GetBookModel> GetAll(int pageIndex, int pageSize, string keyword)
         {
             using (UnitOfWork db = new UnitOfWork())
             {
@@ -21,8 +21,12 @@ namespace BookStore.Repository
 
                 if (pageSize != 0)
                 {
-                    //query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-                    query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    if(keyword == null)
+                    {
+                        query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    } else {
+                        query = query.Where(category => (keyword == default || category.Name.ToLower().Contains(keyword.ToLower()))).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    }
                 }
 
                 GetBookModel getBookModel = null!;

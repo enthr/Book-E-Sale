@@ -7,6 +7,10 @@ node_modules/
 node_modules
 /.pnp
 .pnp.js
+.yarn
+.yarn/
+/.yarn/
+/.yarn
 
 # testing
 /coverage

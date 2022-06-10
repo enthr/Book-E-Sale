@@ -144,10 +144,14 @@ namespace BookStore.Repository
                 result.TotalRecords = query.Count();
                 if (pageSize != 0)
                 {
-                    keyword = keyword != null ? keyword : string.Empty;
-                    //Fetch all the records where keyword is part of Firstname or Lastname or Email. Then skip first {{pageIndex * pageSize}} records and take next {{pageSize}} records.
-                    query = query.Where(x => x.Firstname.ToLower().Contains(keyword.ToLower()) || x.Lastname.Contains(keyword) || x.Email.Contains(keyword)).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-                    //query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    if(keyword == null)
+                    {
+                        query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    } else
+                    {
+                        //Fetch all the records where keyword is part of Firstname or Lastname or Email. Then skip first {{pageIndex * pageSize}} records and take next {{pageSize}} records.
+                        query = query.Where(x => x.Firstname.ToLower().Contains(keyword.ToLower()) || x.Lastname.Contains(keyword) || x.Email.Contains(keyword)).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    }
                 }
 
                 foreach (User user in query.ToList())

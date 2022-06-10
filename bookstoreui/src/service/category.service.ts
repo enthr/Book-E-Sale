@@ -9,6 +9,7 @@ class CategoryService {
 	public async getAll(
 		params: FilterModel
 	): Promise<BaseList<CategoryModel[]>> {
+		params.keyword = params.keyword ? params.keyword : null;
 		const url = `${this.ENDPOINT}/list`;
 		return request
 			.get<BaseList<CategoryModel[]>>(url, { params })

@@ -19,7 +19,7 @@ const EditPublisher: React.FC = () => {
 	const { id } = useParams<{ id?: string }>();
 
 	const validationSchema = Yup.object().shape({
-		name: Yup.string().required('Category Name is required')
+		name: Yup.string().required('Publisher Name is required')
 	});
 
 	const getPublisherById = (): void => {
@@ -126,7 +126,7 @@ const EditPublisher: React.FC = () => {
 									type='submit'
 									color='primary'
 									disableElevation
-                                    onSubmit={() => navigate('/publisher')}
+									onSubmit={() => navigate('/publisher')}
 								>
 									Save
 								</Button>
@@ -137,7 +137,7 @@ const EditPublisher: React.FC = () => {
 									color='primary'
 									disableElevation
 									onClick={() => {
-										navigate('/category');
+										navigate('/publisher');
 									}}
 								>
 									Cancel

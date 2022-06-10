@@ -17,10 +17,10 @@ namespace BookStore.API.Controllers
     {
         [HttpGet]
         [Route("list")]
-        public BaseList<GetBookModel> GetBooks(int pageIndex = 1, int pageSize = 10)
+        public BaseList<GetBookModel> GetBooks(int pageIndex = 1, int pageSize = 10, string? keyword = null)
         {
             BookRepository repo = new BookRepository();
-            BaseList<GetBookModel> books = repo.GetAll(pageIndex, pageSize);
+            BaseList<GetBookModel> books = repo.GetAll(pageIndex, pageSize, keyword);
             return books;
         }
 

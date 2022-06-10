@@ -6,6 +6,7 @@ class OrderService {
 
 	public async placeOrder(order: OrderAddModel): Promise<OrderAddModel> {
 		const url = `${this.ENDPOINT}/add`;
+		console.log(order);
 		return request
 			.post<OrderAddModel>(url, order)
 			.then((res) => {

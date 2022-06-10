@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { editStyle } from './style';
 import { Typography, TextField, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +11,12 @@ import { UpdateProfileModel } from '../../models/UserModel';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import ValidationErrorMessage from '../../components/ValidationErrorMessage';
-import authService from '../../service/auth.service';
 import userService from '../../service/user.service';
 import { toast } from 'react-toastify';
 import Shared from '../../utils/shared';
 
 const UpdateProfile: React.FC = () => {
+	const isMounted = useRef(false);
 	const authContext: AuthContextModel = useAuthContext();
 	const navigate = useNavigate();
 	const { user } = useContext(AuthContext);
@@ -25,8 +25,8 @@ const UpdateProfile: React.FC = () => {
 		useState<UpdateProfileModel>(
 			Object.assign(new UpdateProfileModel(), {
 				email: user.email,
-				firstName: user.firstname,
-				lastName: user.lastname
+				firstName: user.firstName,
+				lastName: user.lastName
 			})
 		);
 	const [updatePassword, setUpdatePassword] = useState<boolean>(false);
@@ -83,7 +83,7 @@ const UpdateProfile: React.FC = () => {
 						handleSubmit
 					}) => (
 						<>
-							<form action='' onSubmit={handleSubmit}>
+							<form onSubmit={handleSubmit}>
 								<div className='form-row-wrapper'>
 									<div className='form-col'>
 										<TextField

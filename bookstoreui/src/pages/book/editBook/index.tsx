@@ -63,7 +63,6 @@ const EditBook: React.FC = () => {
 			.min(1, 'Publisher is required')
 			.required('Publisher is required'),
 		price: Yup.number().required('Price is required'),
-		base64image: Yup.string().required('Image is required'),
 		quantity: Yup.number()
 			.min(1, 'Quantity is required')
 			.required('Quantity is required')
@@ -270,7 +269,6 @@ const EditBook: React.FC = () => {
 										touched={touched.categoryId}
 									/>
 								</div>
-								{/* <img src={values.imageSrc} alt="asa" /> */}
 								<div className='form-col'>
 									{!values.base64image && (
 										<>

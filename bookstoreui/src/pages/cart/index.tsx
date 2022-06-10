@@ -6,11 +6,10 @@ import cartService from '../../service/cart.service';
 import { AuthContextModel, useAuthContext } from '../../context/auth';
 import { toast } from 'react-toastify';
 import orderService from '../../service/order.service';
-import { OrderAddModel } from '../../models/OrderModel';
+import { OrderAddModel, SubOrderModel } from '../../models/OrderModel';
 import Shared from '../../utils/shared';
 import { CartContextModel, useCartContext } from '../../context/cart';
 import { useNavigate } from 'react-router-dom';
-import bookService from '../../service/book.service';
 
 const Cart: React.FC = () => {
 	const authContext: AuthContextModel = useAuthContext();
@@ -46,15 +45,18 @@ const Cart: React.FC = () => {
 			toast.error('Somthing went wrong!');
 		}
 	};
+
 	const updateQuantity = async (cartItem: CartList, inc: Boolean, e: any) => {
 		const current_count = parseInt(
 			e.target.closest('.qty-group').children[1].innerText
 		);
+
 		const quantity = inc ? current_count + 1 : current_count - 1;
 		if (quantity === 0) {
 			toast.error('Item quantity should not be zero');
 			return;
 		}
+
 		cartService
 			.updateItem({
 				id: cartItem.id,
@@ -88,15 +90,28 @@ const Cart: React.FC = () => {
 	const PlcaeOrder = async () => {
 		if (authContext.user.id) {
 			const userCart = await cartService.getList(authContext.user.id);
+
 			if (userCart.totalRecords) {
-				let cartIds: number[] = [];
+				let subOrders: SubOrderModel[] = [];
 				userCart.records.forEach((element: CartList) => {
-					cartIds.push(element.id);
+					const subOrder: SubOrderModel = {
+						bookId: Number(element.book.id),
+						quantity: element.quantity,
+						price: Number(element.book.price),
+						totalPrice:
+							Number(element.quantity) *
+							Number(element.book.price)
+					};
+					subOrders.push(subOrder);
 				});
+
 				const newOrder: OrderAddModel = {
 					userId: authContext.user.id,
-					cartIds
+					orderDate: new Date().toISOString(),
+					subOrders: subOrders,
+					totalPrice: TotalPrice
 				};
+
 				const res = await orderService.placeOrder(newOrder);
 				if (res) {
 					cartContext.updateCart();

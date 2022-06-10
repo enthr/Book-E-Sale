@@ -20,7 +20,7 @@ namespace BookStore.API.Controllers
 
         [HttpGet]
         [Route("list")]
-        public BaseList<GetUserModel> GetUsers(int pageIndex = 1, int pageSize = 10, string keyword = "@")
+        public BaseList<GetUserModel> GetUsers(int pageIndex = 1, int pageSize = 10, string? keyword = null)
         {
             UserRepository repo = new UserRepository();
             BaseList<GetUserModel> users = repo.GetAllUsers(pageIndex, pageSize, keyword);

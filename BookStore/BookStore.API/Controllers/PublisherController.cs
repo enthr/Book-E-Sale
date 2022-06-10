@@ -17,10 +17,10 @@ namespace BookStore.API.Controllers
     {
         [HttpGet]
         [Route("list")]
-        public BaseList<PublisherModel> GetPublishers(int pageIndex = 1, int pageSize = 10)
+        public BaseList<PublisherModel> GetPublishers(int pageIndex = 1, int pageSize = 10, string? keyword = null)
         {
             PublisherRepository repo = new PublisherRepository();
-            BaseList<Publisher> publisher = repo.GetAll(pageIndex, pageSize);
+            BaseList<Publisher> publisher = repo.GetAll(pageIndex, pageSize, keyword);
             return new BaseList<PublisherModel> { TotalRecords = publisher.TotalRecords, Records = publisher.Records.Select(record => new PublisherModel(record)).ToList() };
         }
 

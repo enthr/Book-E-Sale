@@ -7,6 +7,7 @@ class BookService {
 	ENDPOINT = 'api/Book';
 
 	public async getAll(params: FilterModel): Promise<BaseList<BookModel[]>> {
+		params.keyword = params.keyword ? params.keyword : null;
 		const url = `${this.ENDPOINT}/list`;
 		return request
 			.get<BaseList<BookModel[]>>(url, { params })
