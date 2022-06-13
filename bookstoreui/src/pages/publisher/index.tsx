@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { productStyle } from './style';
 import { defaultFilter, RecordsPerPage } from '../../constant/constant';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,6 @@ import { PublisherModel } from '../../models/PublisherModel';
 import ConfirmationDialog from '../../components/ConfirmationDialog';
 
 const Publisher: React.FC = () => {
-	const isMounted = useRef();
 	const [filters, setFilters] = useState<FilterModel>(defaultFilter);
 	const [publisherRecords, setPublisherRecords] = useState<
 		BaseList<PublisherModel[]>

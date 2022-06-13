@@ -19,6 +19,8 @@ export class UpdateProfileModel {
 export default class UserModel {
 	id?: number;
 	email!: string;
+	firstName!: string;
+	lastName!: string;
 	firstname!: string;
 	lastname!: string;
 	roleId!: number;

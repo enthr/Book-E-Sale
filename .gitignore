@@ -11,6 +11,10 @@ node_modules
 .yarn/
 /.yarn/
 /.yarn
+dist/
+/dist/
+/dist
+dist
 
 # testing
 /coverage

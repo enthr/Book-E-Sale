@@ -51,14 +51,12 @@ const User: React.FC = () => {
 			if (filters.keyword === '') delete filters.keyword;
 			getAllUsers({ ...filters });
 		}, 500);
-		console.log(userList);
 		return () => clearTimeout(timer);
 	}, [filters]);
 
 	const getAllUsers = async (filters: FilterModel): Promise<void> => {
 		await userService.getAllUsers(filters).then((res) => {
 			if (res) {
-				console.log(res);
 				setUserList(res);
 			}
 		});
@@ -140,7 +138,7 @@ const User: React.FC = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{users.map((row: UserModel, index: number) => (
+							{users.map((row: any, index: number) => (
 								<TableRow key={row.id}>
 									<TableCell>{row.firstname}</TableCell>
 									<TableCell>{row.lastname}</TableCell>

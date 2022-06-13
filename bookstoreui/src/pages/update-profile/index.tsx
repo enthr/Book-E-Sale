@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { editStyle } from './style';
 import { Typography, TextField, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,6 @@ import { toast } from 'react-toastify';
 import Shared from '../../utils/shared';
 
 const UpdateProfile: React.FC = () => {
-	const isMounted = useRef(false);
 	const authContext: AuthContextModel = useAuthContext();
 	const navigate = useNavigate();
 	const { user } = useContext(AuthContext);

@@ -93,8 +93,8 @@ const EditUser: React.FC = () => {
 			setInitialValueState({
 				id: user.id,
 				email: user.email,
-				lastName: user.lastname,
 				firstName: user.firstname,
+				lastName: user.lastname,
 				roleId,
 				password: user.password
 			});

@@ -82,6 +82,7 @@ export const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({
 			navigate(RoutePaths.BookListing);
 			return;
 		}
+
 		setAppInitialize(true);
 	}, [pathname, user, navigate]);
 
