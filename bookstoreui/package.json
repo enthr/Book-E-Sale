@@ -1,6 +1,7 @@
 {
 	"name": "bookstoreui",
 	"type": "module",
+	"author": "Jaimin Prajapati",
 	"private": true,
 	"proxy": "http://127.0.0.1:5016",
 	"version": "1.0.0",
